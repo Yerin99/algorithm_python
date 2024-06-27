@@ -1,5 +1,5 @@
 from collections import defaultdict
-import heapq
+from collections import deque
 
 # input
 n = int(input())
@@ -15,20 +15,20 @@ for _ in range(m):
 
 # solve
 heap = [(0, s)]  # 거리, 좌표
-visited = set()
+visited = defaultdict(int)
+queue = deque([s])
 answer = -1
 
-while heap:
-    distance, node = heapq.heappop(heap)
-    if node not in visited:
-        if node == e:
-            answer = distance
-            break
+while queue:
+    node = queue.popleft()
+    if node == e:
+        answer = visited[node]
+        break
 
-        for entry in graph[node]:
-            heapq.heappush(heap, (distance + 1, entry))
-        visited.add(node)
-
+    for entry in graph[node]:
+        if visited[entry] == 0:
+            queue.append(entry)
+            visited[entry] = visited[node] + 1
 
 # print
 print(answer)
