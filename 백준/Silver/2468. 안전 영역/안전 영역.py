@@ -9,7 +9,7 @@ for _ in range(n):
 # solve
 flooded = [[False] * n for _ in range(n)]
 maximum = min(100, max(map(max, grid)))
-safe_zones = [0]
+safe_zones = []
 
 for h in range(maximum + 1):
     visited = [[False] * n for _ in range(n)]
