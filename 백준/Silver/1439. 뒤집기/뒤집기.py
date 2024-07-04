@@ -1,20 +1,14 @@
 s = list(map(int, list(input())))
-answer = 0
 
-nums = [[], []]
-
+nums = [0, 0]
 before = s[0]
-count = 1
 
 for i in range(1, len(s)):
     now = s[i]
     if before != now:
-        nums[before].append(count)
-        count = 1
-    else:
-        count += 1
+        nums[before] += 1
     before = now
 
-nums[before].append(count)
+nums[before] += 1
 
-print(min(map(len, nums)))
+print(min(nums))
