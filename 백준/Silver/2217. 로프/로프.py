@@ -1,17 +1,12 @@
 import sys
 
-n = int(input())  # 로프 개수
-max_weight = []
-candidate = []
-ans = []
+n = int(sys.stdin.readline())
+ropes = [int(sys.stdin.readline()) for _ in range(n)]
+ropes.sort()
+maximum_weight = 0
 
 for i in range(n):
-    max_weight.append(int(sys.stdin.readline()))
+    minimum_weight = ropes[i]
+    maximum_weight = max(maximum_weight, minimum_weight * (n - i))
 
-max_weight.sort(reverse=True)
-
-for i in range(n):
-    candidate.append(max_weight[i])
-    ans.append(max_weight[i]*(i+1))
-
-print(max(ans))
+print(maximum_weight)
