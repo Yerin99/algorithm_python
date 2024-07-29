@@ -1,20 +1,22 @@
 n = int(input())
-a = sorted(map(int, input().split()))
-target = int(input())
+numbers = list(map(int, input().split()))
+x = int(input())
 
-front, back = 0, n-1
+count = {}
 answer = 0
 
-while front < back:
-    total = a[front] + a[back]
-
-    if total < target:
-        front += 1
-    elif total == target:
-        front += 1
-        back -= 1
-        answer += 1
+for num in numbers:
+    if num in count:
+        count[num] += 1
     else:
-        back -= 1
+        count[num] = 1
 
-print(answer)
+for num in numbers:
+    complement = x - num
+    if complement in count:
+        if complement != num:
+            answer += count[complement]
+        else:
+            answer += count[complement] - 1
+
+print(answer // 2)
