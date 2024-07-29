@@ -23,9 +23,7 @@ if prime_numbers:
     while f < length:
         if total == target:
             answer += 1
-            if b < length - 1:
-                b += 1
-            total += prime_numbers[b] - prime_numbers[f]
+            total -= prime_numbers[f]
             f += 1
         elif total > target:
             total -= prime_numbers[f]
