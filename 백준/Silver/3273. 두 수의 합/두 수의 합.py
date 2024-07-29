@@ -6,10 +6,7 @@ count = {}
 answer = 0
 
 for num in numbers:
-    if num in count:
-        count[num] += 1
-    else:
-        count[num] = 1
+    count[num] = 1
 
 for num in numbers:
     complement = x - num
