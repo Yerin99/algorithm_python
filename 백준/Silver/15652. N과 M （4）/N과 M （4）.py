@@ -1,20 +1,15 @@
 from collections import defaultdict
 
 
-def dfs_backtracking(start):
+def dfs_backtracking(stack, start):
     if len(stack) == m:
         print(*stack)
+        return 0
 
     for i in range(start, n+1):
-        if count_dict[i] < m:
-            count_dict[i] += 1
-            stack.append(i)
-            dfs_backtracking(i)
-            stack.pop()
-            count_dict[i] -= 1
-
+        dfs_backtracking(stack + [i], i)
+        
 
 n, m = map(int, input().split())
-stack = []
 count_dict = defaultdict(int)
-dfs_backtracking(1)
+dfs_backtracking([], 1)
