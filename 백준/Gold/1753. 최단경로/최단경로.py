@@ -1,4 +1,5 @@
 import heapq
+import sys
 
 
 def dijkstra(graph, start):
@@ -21,6 +22,7 @@ def dijkstra(graph, start):
     return distances
 
 
+input = sys.stdin.readline
 v, e = map(int, input().split())
 s = int(input())
 g = dict()
