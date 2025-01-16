@@ -11,19 +11,15 @@ for _ in range(n-1):
     graph[b] += [a]
 
 stack = [1]
-visited = [False] * (n+1)
 results = [0] * (n+1)
 
 while stack:
     node = stack.pop()
-    if not visited[node]:
-        stack += graph[node]
 
-        for e in graph[node]:
-            if not visited[e]:
-                results[e] = node
-
-        visited[node] = True
+    for neighbor in graph[node]:
+        if results[neighbor] == 0:
+            results[neighbor] = node
+            stack.append(neighbor)
 
 for i in range(2, n+1):
     print(results[i])
