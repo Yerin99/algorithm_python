@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 def solution(phone_book):
     answer = True
     
@@ -10,7 +8,7 @@ def solution(phone_book):
             phone_prefix[phone_number[:i]] = True
     
     for phone_number in phone_book:
-        if phone_prefix.get(phone_number) == True:
+        if phone_prefix.get(phone_number):
             answer = False
             break
             
