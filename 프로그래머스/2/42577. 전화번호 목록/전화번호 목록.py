@@ -1,15 +1,12 @@
 def solution(phone_book):
     answer = True
-    
-    phone_prefix = dict()
-    
+    hash_map = {}
     for phone_number in phone_book:
-        for i in range(1, len(phone_number)):
-            phone_prefix[phone_number[:i]] = True
-    
+        hash_map[phone_number] = 1
     for phone_number in phone_book:
-        if phone_prefix.get(phone_number):
-            answer = False
-            break
-            
+        temp = ""
+        for number in phone_number:
+            temp += number
+            if temp in hash_map and temp != phone_number:
+                answer = False
     return answer
