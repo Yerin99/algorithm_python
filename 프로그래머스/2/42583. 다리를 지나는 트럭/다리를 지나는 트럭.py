@@ -5,13 +5,12 @@ def solution(bridge_length, max_weight, truck_weights):
     
     num_of_trucks = len(truck_weights)
     bridge_queue = deque([0]*bridge_length)
-    truck_queue = truck_weights[::-1]
-    finish_queue = deque([])
+    truck_queue = deque(truck_weights)
     sum_bridge = 0
     
     
     while truck_queue:
-        truck = truck_queue.pop()
+        truck = truck_queue.popleft()
         
         while True:
             something = bridge_queue.popleft()
@@ -19,7 +18,6 @@ def solution(bridge_length, max_weight, truck_weights):
             
             if something != 0:  # it's truck!
                 sum_bridge -= something
-                finish_queue.append(something)
             
             if sum_bridge + truck <= max_weight:
                 sum_bridge += truck
@@ -28,17 +26,6 @@ def solution(bridge_length, max_weight, truck_weights):
             else:
                 bridge_queue.append(0)
         
-        
-    while bridge_queue:
-        if len(finish_queue) == num_of_trucks:
-            answer += 1
-            break
-            
-        something = bridge_queue.popleft()
-
-        if something != 0:
-            finish_queue.append(something)
-            
-        answer += 1            
+    answer += bridge_length         
     
     return answer
