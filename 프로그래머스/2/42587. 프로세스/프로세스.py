@@ -3,28 +3,31 @@ import heapq
 
 def solution(priorities, location):
     answer = 0
+    max_heap = []
+    processes = deque([])
     
-    priority_queue = deque()
-    priority_heap = []
+    for i, priority in enumerate(priorities):
+        max_heap.append(-priority)
+        processes.append([i, priority])
     
-    for i in range(len(priorities)):
-        priority = priorities[i]
-        heapq.heappush(priority_heap, -priority)
-        priority_queue.append([i, priority])
+    heapq.heapify(max_heap)
+    is_running = True
     
-    order = 1
     
-    while priority_queue:
-        process, priority = priority_queue.popleft()
-        highest_priority = -priority_heap[0]
+    while is_running:
+        highest_priority = -heapq.heappop(max_heap)
+        n = len(processes)
         
-        if priority < highest_priority:
-            priority_queue.append([process, priority])
-        elif priority == highest_priority:
-            if process == location:
-                break
+        for _ in range(n):
+            i, priority = processes.popleft()
+            
+            if priority == highest_priority:
+                answer += 1
+                if i == location:
+                    is_running = False
+                break    
             else:
-                heapq.heappop(priority_heap)
-                order += 1
-    
-    return order
+                processes.append([i, priority])
+            
+        
+    return answer
