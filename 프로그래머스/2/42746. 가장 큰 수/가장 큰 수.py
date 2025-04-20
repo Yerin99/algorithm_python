@@ -1,7 +1,17 @@
+from functools import cmp_to_key
+
+
 def solution(numbers):
+    def compare(a, b):
+        if int(a + b) > int(b + a):
+            return -1
+        elif int (a + b) < int (b + a):
+            return 1
+        else:
+            return 0
+    
     numbers = list(map(str, numbers))
-    # 핵심: 문자열을 반복하여 비교 기준을 만듦
-    numbers.sort(key=lambda x: x*4, reverse=True)
+    numbers.sort(key=cmp_to_key(compare))
     
     answer = ''.join(numbers)
-    return '0' if answer[0] == '0' else answer
+    return str(int(answer))
