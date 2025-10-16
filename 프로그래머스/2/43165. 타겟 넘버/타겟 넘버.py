@@ -1,17 +1,16 @@
-from collections import deque
-
 def solution(numbers, target):
     answer = 0
-    case = [0]
+    n = len(numbers)
     
-    for number in numbers:
-        tmp_case = []
-        for e in case:
-            tmp_case.append(e + number)
-            tmp_case.append(e - number)
-            
-        case = tmp_case[:]
+    stack = [0]
     
-    answer = case.count(target)
+    for i in range(n):
+        temp_stack = []
+        for node in stack:
+            temp_stack.append(node+numbers[i])
+            temp_stack.append(node-numbers[i])
+        stack = temp_stack[:]
+    
+    answer = stack.count(target)
     
     return answer
