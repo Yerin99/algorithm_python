@@ -1,5 +1,5 @@
 def solution(n, lost, reserve):
-    answer = n
+    answer = 0
     students = [0]*n
     
     for l in lost:
@@ -18,7 +18,7 @@ def solution(n, lost, reserve):
                 students[i+1] -= 1
                 
     for student in students:
-        if student == -1:
-            answer -= 1
+        if student != -1:
+            answer += 1
     
     return answer
