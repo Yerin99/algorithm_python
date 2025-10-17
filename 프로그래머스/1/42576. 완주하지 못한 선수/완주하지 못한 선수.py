@@ -1,17 +1,16 @@
+from collections import defaultdict
+
 def solution(participant, completion):
-    answer = ''
-    
-    people_dict = dict()
+    people = defaultdict(int)
     
     for p in participant:
-        people_dict[p] = people_dict.get(p, 0) + 1
+        people[p] += 1
     
     for c in completion:
-        people_dict[c] = people_dict[c] - 1
-        
-    for k in people_dict.keys():
-        if people_dict[k] == 1:
-            answer = k
-            break
+        people[c] -= 1
+    
+    for key, value in people.items():
+        if value == 1:
+            answer = key
     
     return answer
