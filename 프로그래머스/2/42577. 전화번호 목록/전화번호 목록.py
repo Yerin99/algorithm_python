@@ -1,15 +1,20 @@
+from collections import defaultdict
+
+
 def solution(phone_book):
     answer = True
+    is_prefix = defaultdict(bool)
     
-    phone_dict = dict()
-    
-    for phone_number in phone_book:
-        phone_dict[phone_number] = True
     
     for phone_number in phone_book:
-        for i in range(len(phone_number)-1):
-            if phone_dict.get(phone_number[:i+1]):
-                answer = False
-                break
-            
+        n = len(phone_number)
+        for i in range(n):
+            prefix = phone_number[:i]
+            is_prefix[prefix] = True
+    
+    for phone_number in phone_book:
+        if is_prefix[phone_number]:
+            answer = False
+            break
+    
     return answer
