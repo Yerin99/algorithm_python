@@ -1,20 +1,8 @@
-from collections import defaultdict
-
-
 def solution(phone_book):
-    answer = True
-    is_prefix = defaultdict(bool)
+    phone_book.sort()
     
-    
-    for phone_number in phone_book:
-        n = len(phone_number)
-        for i in range(n):
-            prefix = phone_number[:i]
-            is_prefix[prefix] = True
-    
-    for phone_number in phone_book:
-        if is_prefix[phone_number]:
-            answer = False
-            break
-    
-    return answer
+    for i in range(len(phone_book) - 1):
+        # 인접한 두 문자열만 비교
+        if phone_book[i+1].startswith(phone_book[i]):
+            return False
+    return True
