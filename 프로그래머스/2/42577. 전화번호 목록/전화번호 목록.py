@@ -1,8 +1,8 @@
 def solution(phone_book):
-    phone_book.sort()
+    phone_set = set(phone_book)
     
-    for i in range(len(phone_book) - 1):
-        # 인접한 두 문자열만 비교
-        if phone_book[i+1].startswith(phone_book[i]):
-            return False
+    for number in phone_book:
+        for i in range(1, len(number)):
+            if number[:i] in phone_set:
+                return False
     return True
